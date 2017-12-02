@@ -9,16 +9,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app.routing.module';
 import { MaterialModule } from './material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CoreModule } from './core/core.module';
 
 // Firebase
 import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
 // Providers
 import { MediaHelperService } from './providers/media-helper.service';
-import { AngularFirebaseService } from './providers/angular-firebase.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -49,10 +47,9 @@ import { RegisterComponent } from './components/account/register/register.compon
     AppRoutingModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    AngularFirestoreModule
+    CoreModule
   ],
-  providers: [MediaHelperService, AngularFirebaseService],
+  providers: [MediaHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
