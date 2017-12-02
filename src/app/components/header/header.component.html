@@ -22,8 +22,8 @@
       <button mat-button routerLink='/login'>Login</button>
     </ng-template>
     <ng-template #authenticated>
-      <button mat-button class='white-icon' [matMenuTriggerFor]="menu">
-        {{userName}}
+      <button mat-icon-button class='white-icon' [matMenuTriggerFor]="menu">
+        <img [src]="profilePic" [alt]="userName" class='profile-pic'>
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item>

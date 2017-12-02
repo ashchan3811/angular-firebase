@@ -9,6 +9,7 @@ import { AngularFireAuthService } from '../../core/angular-fire-auth.service';
 export class HeaderComponent implements OnInit {
   @Output() openSideNavbar = new EventEmitter();
   userName: string;
+  profilePic: string;
 
   constructor(public auth: AngularFireAuthService) {}
 
@@ -16,8 +17,10 @@ export class HeaderComponent implements OnInit {
     this.auth.user.subscribe(u => {
       if (u) {
         this.userName = u.displayName.substr(0, 3);
+        this.profilePic = u.photoURL;
       } else {
         this.userName = '';
+        this.profilePic = '';
       }
     });
   }
