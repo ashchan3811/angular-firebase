@@ -1,0 +1,19 @@
+mat-sidenav {
+  min-width: 233px;
+}
+.sidenav-container {
+  flex: 1;
+  overflow: scroll;
+  min-height: 100%;
+  max-width: 100%;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.mobile-content {
+  height: 93vh;
+}
+.desktop-content {
+  height: 91.6vh;
+}

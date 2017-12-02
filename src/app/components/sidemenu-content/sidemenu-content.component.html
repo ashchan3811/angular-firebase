@@ -1,0 +1,10 @@
+<mat-sidenav-container>
+  <mat-sidenav class="sidenav mat-elevation-z4" [mode]='sideNavMode' [fixedInViewport]='true' [fixedTopGap]='topGap'>
+    <app-sidemenu></app-sidemenu>
+  </mat-sidenav>
+
+  <div class="sidenav-content" [ngClass]='heightClass'>
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-sidenav-container>

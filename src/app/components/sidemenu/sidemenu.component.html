@@ -1,0 +1,22 @@
+<mat-nav-list>
+  <a mat-list-item (click)="goToLink('/')">Home</a>
+  <a mat-list-item (click)="goToLink('/register')">Register</a>
+  <a mat-list-item (click)="goToLink('/users')">Users</a>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          More Menu
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="panel-content">
+        <mat-nav-list>
+          <a mat-list-item (click)="goToLink('/users')">Users</a>
+          <a mat-list-item>About</a>
+          <a mat-list-item>Settings</a>
+          <a mat-list-item>Login</a>
+        </mat-nav-list>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-nav-list>
