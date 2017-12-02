@@ -11,6 +11,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
 import { User } from './user';
+import { EmailAndPasswordCred } from './email-and-password-cred';
 
 @Injectable()
 export class AngularFireAuthService {
@@ -34,6 +35,27 @@ export class AngularFireAuthService {
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
     return this.oAuthLogin(provider);
+  }
+
+  githubLogin() {
+    const provider = new firebase.auth.GithubAuthProvider();
+    return this.oAuthLogin(provider);
+  }
+
+  createAccountWithEmailAndPassword(user: EmailAndPasswordCred) {
+    return this.auth.auth
+      .createUserWithEmailAndPassword(user.email, user.password)
+      .then(credential => {
+        this.updateUserData(credential.user);
+      });
+  }
+
+  loginWithEmailAndPassword(user: EmailAndPasswordCred) {
+    return this.auth.auth
+      .signInWithEmailAndPassword(user.email, user.password)
+      .then(credential => {
+        this.updateUserData(credential.user);
+      });
   }
 
   private oAuthLogin(provider) {

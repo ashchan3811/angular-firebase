@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuthService } from '../../../core/angular-fire-auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,14 +9,37 @@ import { AngularFireAuthService } from '../../../core/angular-fire-auth.service'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(private auth: AngularFireAuthService, private router: Router) {}
+  loginForm: FormGroup;
+  hide = true;
+
+  constructor(
+    private auth: AngularFireAuthService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit() {
     this.checkLogin();
+    this.createForm();
+  }
+
+  createForm() {
+    this.loginForm = this.fb.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
+    });
   }
 
   loginWithGoogle() {
     this.auth.googleLogin().then(() => this.checkLogin());
+  }
+
+  loginWithGithub() {
+    this.auth.githubLogin().then(() => this.checkLogin());
+  }
+
+  loginWithEmailAndPass() {
+    console.log(this.loginForm.value);
   }
 
   checkLogin() {

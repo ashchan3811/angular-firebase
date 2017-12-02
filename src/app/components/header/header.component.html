@@ -19,7 +19,7 @@
 
     <span *ngIf='auth.user | async ;then authenticated else guest'></span>
     <ng-template #guest>
-      <button mat-button routerLink='/login'>Login</button>
+      <button mat-icon-button routerLink='/login'>Login</button>
     </ng-template>
     <ng-template #authenticated>
       <button mat-icon-button class='white-icon' [matMenuTriggerFor]="menu">

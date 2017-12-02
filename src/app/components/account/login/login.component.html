@@ -7,16 +7,24 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form class='form-container'>
+    <form class='form-container' novalidate [formGroup]='loginForm'>
       <mat-form-field>
-        <input type='text' matInput placeholder="Username">
+        <input type='text' matInput placeholder="Enter Username" formControlName='username' required>
+        <mat-error *ngIf="!loginForm.controls.username.valid">
+          Username is Required
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input type='password' matInput placeholder="Password">
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName='password' required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <mat-error *ngIf="!loginForm.controls.password.valid">
+          Password is Required
+        </mat-error>
       </mat-form-field>
     </form>
-    <button mat-raised-button color='primary'>Login</button>
-    <button mat-raised-button color='accent'>Register</button>
+    <button mat-raised-button color='primary' (click)='loginWithEmailAndPass()' [disabled]='!loginForm.valid'>Login</button>
+    <button mat-raised-button color='accent' routerLink='/register'>Register</button>
     <button mat-raised-button color='warn' (click)='loginWithGoogle()'>Login with google</button>
+    <button mat-raised-button color='warn' (click)='loginWithGithub()'>Login with Github</button>
   </mat-card-content>
 </mat-card>
