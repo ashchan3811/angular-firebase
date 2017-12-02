@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AngularFireAuthService } from '../../core/angular-fire-auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,23 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Output() openSideNavbar = new EventEmitter();
-  constructor() {}
+  userName: string;
 
-  ngOnInit() {}
+  constructor(public auth: AngularFireAuthService) {}
+
+  ngOnInit() {
+    this.auth.user.subscribe(u => {
+      if (u) {
+        this.userName = u.displayName.substr(0, 3);
+      } else {
+        this.userName = '';
+      }
+    });
+  }
+
+  logOut() {
+    this.auth.signOut();
+  }
 
   openSideNav() {
     this.openSideNavbar.emit();

@@ -2,10 +2,9 @@
   <button mat-icon-button (click)='openSideNav()'>
     <mat-icon>menu</mat-icon>
   </button>
-  <button routerLink='/dashbard' mat-button matTooltip="Go to Home Page">Angular Firebase App</button>
+  <button routerLink='/dashbard' mat-button>Angular Firebase App</button>
 
-  <span class="fill-remaining-space">
-  </span>
+  <span class="fill-remaining-space"></span>
 
   <span>
     <button mat-icon-button class='white-icon' matTooltip="Notifications">
@@ -17,22 +16,29 @@
     <button mat-icon-button disabled=true>
       <mat-icon class="white-icon rotate-90">remove</mat-icon>
     </button>
-    <button mat-icon-button class='white-icon' [matMenuTriggerFor]="menu" matTooltip="Accounts">
-      <mat-icon>account_circle</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon>account_circle</mat-icon>
-        <span>Profile</span>
+
+    <span *ngIf='auth.user | async ;then authenticated else guest'></span>
+    <ng-template #guest>
+      <button mat-button routerLink='/login'>Login</button>
+    </ng-template>
+    <ng-template #authenticated>
+      <button mat-button class='white-icon' [matMenuTriggerFor]="menu">
+        {{userName}}
       </button>
-      <button mat-menu-item>
-        <mat-icon>settings</mat-icon>
-        <span>Settings</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>power_settings_new</mat-icon>
-        <span>Logout</span>
-      </button>
-    </mat-menu>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </button>
+        <button mat-menu-item (click)='logOut()'>
+          <mat-icon>power_settings_new</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </ng-template>
   </span>
 </mat-toolbar>

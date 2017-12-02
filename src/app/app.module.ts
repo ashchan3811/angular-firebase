@@ -26,6 +26,7 @@ import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 import { SidemenuContentComponent } from './components/sidemenu-content/sidemenu-content.component';
 import { LoginComponent } from './components/account/login/login.component';
 import { RegisterComponent } from './components/account/register/register.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { RegisterComponent } from './components/account/register/register.compon
     SidemenuComponent,
     SidemenuContentComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
