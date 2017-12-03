@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   hide = true;
+  checkLoginStatus: string;
 
   constructor(
     private auth: AngularFireAuthService,
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.checkLoginStatus = 'checking';
     this.checkLogin();
     this.createForm();
   }
@@ -46,6 +48,8 @@ export class LoginComponent implements OnInit {
     this.auth.user.subscribe(u => {
       if (u) {
         this.router.navigate(['/home']);
+      } else {
+        this.checkLoginStatus = 'unauthorized';
       }
     });
   }

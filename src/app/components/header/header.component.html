@@ -7,10 +7,10 @@
   <span class="fill-remaining-space"></span>
 
   <span>
-    <button mat-icon-button class='white-icon' matTooltip="Notifications">
+    <button mat-icon-button class='white-icon'>
       <mat-icon>notifications</mat-icon>
     </button>
-    <button mat-icon-button class='white-icon' matTooltip="Add Tasks">
+    <button mat-icon-button class='white-icon'>
       <mat-icon>add_circle</mat-icon>
     </button>
     <button mat-icon-button disabled=true>
@@ -22,7 +22,7 @@
       <button mat-icon-button routerLink='/login'>Login</button>
     </ng-template>
     <ng-template #authenticated>
-      <button mat-icon-button class='white-icon' [matMenuTriggerFor]="menu">
+      <button mat-icon-button class='white-icon' [matMenuTriggerFor]="menu" [matTooltip]="userName">
         <img [src]="profilePic" [alt]="userName" class='profile-pic'>
       </button>
       <mat-menu #menu="matMenu">
