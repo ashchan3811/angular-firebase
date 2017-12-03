@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.auth.user.subscribe(u => {
       if (u) {
-        this.userName = u.displayName;
+        this.userName = u.displayName.split(' ')[0];
         this.profilePic = u.photoURL;
       } else {
         this.userName = '';
